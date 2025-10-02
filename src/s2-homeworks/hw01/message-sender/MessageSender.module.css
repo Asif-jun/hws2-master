@@ -1,18 +1,42 @@
 .sendForm {
-
+  display: flex; /* используем flex для горизонтального расположения textarea и кнопки */
+  max-width: 1280px; /* ограничение ширины формы */
+  column-gap: 45px; /* расстояние между полем ввода и кнопкой */
+  justify-content: space-between; /* равномерное распределение элементов */
+  margin-top: 56px; /* отступ сверху */
+  margin-bottom: 32px; /* отступ снизу */
 }
 
 .textarea {
-
+  resize: none; /* запрещаем пользователю изменять размер поля */
+  width: 86%; /* занимает 86% ширины формы */
+  background-color: #f5f7fb; /* светло-серый фон */
+  min-height: 40px; /* минимальная высота, как в макете */
+  border-radius: 20px; /* скругление углов */
+  padding: 12px 24px 11px 24px; /* внутренние отступы: сверху, справа, снизу, слева */
+  border: none; /* убираем стандартную рамку */
+  font-family: 'Montserrat', sans-serif; /* шрифт для текста */
+  font-size: 14px; /* размер текста */
+  outline: none; /* убираем стандартное выделение */
 }
 
 .button {
-
+  width: 10%; /* ширина кнопки 10% от формы */
+  height: 40px; /* высота как в макете */
+  border-radius: 20px; /* скругление углов */
+  border: none; /* убираем рамку */
+  background-color: #0066cc; /* синий фон */
+  color: white; /* белый текст */
+  font-family: 'Montserrat', sans-serif; /* шрифт кнопки */
+  font-weight: 600; /* полужирный текст */
+  cursor: pointer; /* курсор при наведении */
+  transition: background 0.2s ease; /* плавное изменение цвета при hover/active */
 }
 
 .button:hover {
-
+  background-color: #005bb5; /* чуть темнее при наведении */
 }
-.button:active {
 
+.button:active {
+  background-color: #004c99; /* еще темнее при клике */
 }

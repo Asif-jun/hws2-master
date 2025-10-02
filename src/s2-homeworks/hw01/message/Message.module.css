@@ -1,31 +1,59 @@
 .message {
-
+  display: flex; /* используем flex для вертикального размещения элементов */
+  flex-direction: column; /* элементы (имя, текст, время) идут сверху вниз */
+  align-items: flex-end; /* выравниваем содержимое по правому краю */
 }
 
 .imageAndText {
-
+  display: flex; /* аватар и пузырь идут в ряд */
+  flex-direction: row-reverse; /* аватар справа, текст слева от него */
+  align-items: flex-end; /* выравниваем по нижней границе пузыря */
+  gap: 8px; /* расстояние между аватаром и текстом */
 }
 
 .imageAndText img {
-
+  width: 48px; /* ширина аватара */
+  height: 48px; /* высота аватара */
+  border-radius: 50%; /* делаем аватар круглым */
 }
 
 .text {
-
+  position: relative; /* нужно для позиционирования хвостика */
+  padding: 12px 20px; /* внутренние отступы текста внутри пузыря */
+  margin: 8px 10px; /* внешние отступы */
+  background-color: #0066cc; /* синий пузырь для правых сообщений */
+  border-radius: 10px 10px 0; /* закругление углов (нижний левый острый для хвостика) */
 }
 
 .text:after {
-
+  position: absolute; /* позиционируем хвостик относительно пузыря */
+  content: ''; /* псевдоэлемент пустой */
+  right: -12px; /* смещаем хвостик наружу вправо */
+  bottom: 0; /* нижний край пузыря */
+  width: 0;
+  height: 0;
+  border-left: 12px solid #0066cc; /* цвет хвостика совпадает с фоном пузыря */
+  border-top: 12px solid transparent; /* верхний треугольник прозрачный для формы хвостика */
 }
 
 .name {
-
+  font-family: 'Montserrat', sans-serif; /* шрифт имени */
+  font-weight: 600; /* полужирное имя */
+  font-size: 18px; /* размер шрифта имени */
+  color: white; /* имя белое для контраста на синем фоне */
+  margin-bottom: 4px; /* отступ между именем и текстом */
 }
 
 .messageText {
-
+  font-family: 'Montserrat', sans-serif; /* шрифт текста */
+  font-weight: 400; /* обычный вес текста */
+  font-size: 16px; /* размер текста */
+  color: white; /* текст белый для контраста */
 }
 
 .time {
-
+  font-family: 'Montserrat', sans-serif; /* шрифт времени */
+  font-weight: 600; /* полужирное время */
+  font-size: 10px; /* размер шрифта */
+  margin-top: 4px; /* отступ сверху, вместо padding */
 }

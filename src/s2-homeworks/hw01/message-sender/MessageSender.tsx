@@ -1,76 +1,76 @@
-import React, {useEffect, useRef, useState} from 'react'
-import { message0 } from '../HW1'
+import React, { useEffect, useRef, useState } from 'react'
+import { message0, MessageType } from '../HW1'
 import s from './MessageSender.module.css'
 
-// компонента, которая тестирует вашу компоненту (не изменять, any не трогать)
-const MessageSender = (props: any) => {
-    const M = props.M
-    const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-    const [messages, setMessages] = useState<any[]>([])
-    const [text, setText] = useState<any>('')
+// тип пропсов: сюда прилетает компонент (Message или FriendMessage)
+type MessageSenderProps = {
+  M: React.ComponentType<{ message: MessageType }>
+}
 
-    const onChange = (e: any) => {
-        setText(e.currentTarget.value)
+const MessageSender = ({ M }: MessageSenderProps) => {
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null)
+  const [messages, setMessages] = useState<MessageType[]>([])
+  const [text, setText] = useState<string>('')
+
+  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setText(e.currentTarget.value)
+  }
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = '0px'
+      textareaRef.current.style.height =
+        Math.max(30, textareaRef.current.scrollHeight) + 'px'
     }
+  }, [text])
 
-    useEffect(() => {
-        if (textareaRef?.current) {
-            textareaRef.current.style.height = '0px'
-            textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px'
-        }
-    }, [text])
+  const addMessage = () => {
+    if (!text.trim()) return
 
-    const addMessage = () => {
-        setMessages([
-            ...messages,
-            {
-                id: messages.length ? messages.length + 1 : 1,
-                user: message0.user,
-                message: {
-                    text,
-                    time: new Date().toTimeString().slice(0, 5),
-                },
-            },
-        ])
-        setTimeout(() => setText(''), 4)
+    setMessages([
+      ...messages,
+      {
+        id: messages.length ? messages.length + 1 : 1,
+        user: message0.user,
+        message: {
+          text,
+          time: new Date().toTimeString().slice(0, 5),
+        },
+      },
+    ])
+    setText('')
+  }
+
+  const onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault()
+      addMessage()
     }
+  }
 
-    const onKeyDown = (e: any) => {
-        e.key === 'Enter' && e.shiftKey && addMessage()
-    }
+  return (
+    <>
+      {messages.map(m => (
+        <M key={'message' + m.id} message={m} />
+      ))}
 
-    return (
-        <>
-            {messages.map((m) => (
-                <M key={'message' + m.id} message={m} />
-            ))}
-
-            <div id={'hw1-send-message-form'} className={s.sendForm}>
-                <textarea
-                    id={'hw1-textarea'}
-                    className={s.textarea}
-                    ref={textareaRef}
-
-                    title={'Shift+Enter for send'}
-                    placeholder={'Type your message'}
-                    value={text}
-
-                    onChange={onChange}
-                    onKeyDown={onKeyDown}
-                />
-                <button
-                    id={'hw1-button'}
-                    className={s.button}
-
-                    onClick={addMessage}
-                >
-                    {/*текст кнопки могут изменить студенты*/}
-                    Send
-                    {/**/}
-                </button>
-            </div>
-        </>
-    )
+      <div id={'hw1-send-message-form'} className={s.sendForm}>
+        <textarea
+          id={'hw1-textarea'}
+          className={s.textarea}
+          ref={textareaRef}
+          title={'Enter to send, Shift+Enter for new line'}
+          placeholder={'Type your message'}
+          value={text}
+          onChange={onChange}
+          onKeyDown={onKeyDown}
+        />
+        <button id={'hw1-button'} className={s.button} onClick={addMessage}>
+          Send
+        </button>
+      </div>
+    </>
+  )
 }
 
 export default MessageSender

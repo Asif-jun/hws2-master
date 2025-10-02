@@ -1,31 +1,58 @@
 .friendMessage {
-
+  display: flex; /* используем flex для вертикального размещения элементов */
+  flex-direction: column; /* элементы (имя, текст, время) идут сверху вниз */
+  align-items: flex-start; /* выравниваем содержимое по левому краю */
 }
 
 .friendImageAndText {
-
+  display: flex; /* аватар и пузырь идут в ряд */
+  align-items: flex-end; /* выравниваем по нижней границе (чтобы текст был на уровне аватара) */
+  gap: 8px; /* расстояние между аватаром и текстом */
 }
 
 .friendImageAndText img {
-
+  width: 48px; /* ширина аватара */
+  height: 48px; /* высота аватара */
+  border-radius: 50%; /* делаем аватар круглым */
 }
 
 .friendText {
-
+  position: relative; /* нужно для позиционирования хвостика */
+  padding: 12px 20px; /* внутренние отступы текста внутри пузыря */
+  margin: 8px 10px; /* внешние отступы от других элементов */
+  background-color: #f5f7fb; /* цвет пузыря (светло-серый) */
+  border-radius: 10px 10px 10px 0; /* закругление углов, нижний левый угол острый для хвостика */
 }
 
 .friendText:after {
-
+  position: absolute; /* позиционируем хвостик относительно пузыря */
+  content: ''; /* псевдоэлемент, сам по себе пустой */
+  left: -12px; /* смещаем хвостик влево за пределы пузыря */
+  bottom: 0; /* нижний край пузыря */
+  width: 0; /* нет размеров прямоугольника */
+  height: 0; /* нет размеров прямоугольника */
+  border-right: 12px solid #f5f7fb; /* создаём треугольник хвостика по цвету пузыря */
+  border-top: 12px solid transparent; /* верхний треугольник прозрачный, чтобы получить форму */
 }
 
 .friendName {
-
+  font-family: 'Montserrat', sans-serif; /* шрифт имени */
+  font-weight: 600; /* полужирное имя */
+  font-size: 18px; /* размер шрифта имени */
+  color: black; /* цвет имени */
+  margin-bottom: 4px; /* отступ между именем и текстом */
 }
 
 .friendMessageText {
-
+  font-family: 'Montserrat', sans-serif; /* шрифт текста */
+  font-weight: 400; /* обычный вес текста */
+  font-size: 16px; /* размер текста */
+  color: black; /* цвет текста */
 }
 
 .friendTime {
-
+  font-family: 'Montserrat', sans-serif; /* шрифт времени */
+  font-weight: 600; /* полужирное время */
+  font-size: 10px; /* размер шрифта времени */
+  margin-top: 4px; /* отступ сверху, чтобы время не прилипало к тексту */
 }

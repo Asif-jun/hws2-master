@@ -1,8 +1,8 @@
 {
   "name": "hws2",
-  "homepage": "http://IgnatZakalinsky.github.io/hws2",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Asif-jun.github.io/hws2-master",
   "dependencies": {
     "@emotion/react": "11.10.4",
     "@emotion/styled": "11.10.4",
@@ -16,7 +16,6 @@
     "@types/react-dom": "18.0.6",
     "@types/uuid": "8.3.4",
     "axios": "0.27.2",
-    "gh-pages": "4.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-redux": "8.0.4",
@@ -32,7 +31,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
+    "predeploy": "pnpm build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
@@ -52,5 +51,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "5.0.0"
   }
 }
